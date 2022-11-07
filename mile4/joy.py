@@ -7,6 +7,8 @@ from std_msgs.msg import Int16
 
 from drive_interfaces.msg import VehCmd
 
+from nav_msgs.msg import Odometry
+
 from geometry_msgs.msg import Twist
 
 #from .ports import ports
