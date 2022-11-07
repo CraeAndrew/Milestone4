@@ -2,7 +2,7 @@ from setuptools import setup
 import os
 from glob import glob
 
-package_name = ""
+package_name = "mile4"
 
 setup(
     name=package_name,
@@ -15,12 +15,15 @@ setup(
     ],
     install_requires=["setuptools"],
     zip_safe=True,
-    maintainer="",
-    maintainer_email="",
-    description="",
-    license="",
+    maintainer="crae",
+    maintainer_email="craeandrew@ufl.edu",
+    description="building controller",
+    license="N/A",
     tests_require=["pytest"],
     entry_points={
-        "console_scripts": [],
+        "console_scripts": [
+        'joy = mile4.joy:main',
+        'odometry = mile4.odometry:main',
+        ],
     },
 )
