@@ -3,7 +3,7 @@
 <package format="3">
   <name>projects</name>
   <version>1.0.0</version>
-  <description>Converting LiDAR into Cartesian Form</description>
+  <description>Building contoller</description>
   <maintainer email="craeandrew@ufl.edu">crae</maintainer>
   <license>N/A</license>
 
