@@ -6,13 +6,6 @@ from launch_ros.actions import Node
 def generate_launch_description():
     ld = LaunchDescription()
 
-    joy_node = Node(
-        package="joy",
-        executable="joy_node",
-        #parameters=[{"steering_offset": 0.0}],
-    )
-    ld.add_action(joy_node)
-
     joy = Node(
         package="mile4",
         executable="joy",
