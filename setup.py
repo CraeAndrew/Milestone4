@@ -23,7 +23,6 @@ setup(
     entry_points={
         "console_scripts": [
         'joy = mile4.joy:main',
-        'odometry = mile4.odometry:main',
         ],
     },
 )
