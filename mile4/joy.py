@@ -11,9 +11,6 @@ from nav_msgs.msg import Odometry
 
 from geometry_msgs.msg import Twist
 
-#from .ports import ports
-
-
 import array
 import math
 import time
@@ -31,9 +28,10 @@ class Joy_Count(Node):
         self.publisher = self.create_publisher(Int16, 'led_color', 10)
 
         self.publisher2 = self.create_publisher(VehCmd, 'vehicle_command_angle', 10)
+        
+        self.var = self.create_timer(1, self.var_callback)
 
-
-    
+        self.publisher3 = self.create_publisher(VehCmd, 'vehicle_command_angle', 10)
 
     def timer_callback(self):
         
@@ -57,6 +55,16 @@ class Joy_Count(Node):
         #self.get_logger().info('"%s"' % control)
         
         self.publisher2.publish(control)
+
+    def var_callback(self):
+        
+        Ie_mtime = time.monotonic()
+
+        self.get_logger().info('"%s"' % Ie_mtime)
+        
+        #I_error = error of integral addition
+
+        #time.monotonic()
 
 def main(args=None):
     rclpy.init(args=args)
