@@ -23,7 +23,7 @@ class Joy_Count(Node):
             Joy,'joy',self.listener_callback,10)
 
         self.subscription2 = self.create_subscription(
-            Odometry,'odometry',self.listener_callback,10)
+            Odometry,'odometry',self.listener_callback2,10)
 
         self.subscription  # prevent unused variable warning
         self.subscription2
@@ -48,15 +48,19 @@ class Joy_Count(Node):
             
             self.publisher.publish(light)
 
-    def listener_callback(self, msg, twist):
+    def listener_callback(self, msg):
 
-        control=VehCmd()
         
-        r = (msg.axes[1])*100
+        self.r = (msg.axes[1])*100
+        self.r2 = (msg.axes[0])*45
 
-        y = twist.twist.twist.linear.x/7.3513268*100
 
-        e = r-y
+    def listener_callback2(self, msg):
+        control=VehCmd()
+
+        y = msg.twist.twist.linear.x/7.3513268*100
+
+        e = self.r-y
 
         kp = .2
         ki = .1
@@ -73,20 +77,12 @@ class Joy_Count(Node):
         self.e_old = e
 
         control.throttle_effort = u
-        control.steering_angle = (msg.axes[0])*45
+        control.steering_angle = self.r2
     
         #self.get_logger().info('"%s"' % control)
         
         self.publisher2.publish(control)
 
-    #def var_callback(self):
-        
-        #Ie_mtime = time.monotonic()
-
-        #self.get_logger().info('"%s"' % Ie_mtime)
-        #I_error = error of integral addition
-
-        #time.monotonic()
 
 def main(args=None):
     rclpy.init(args=args)
