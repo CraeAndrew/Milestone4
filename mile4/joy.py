@@ -54,7 +54,7 @@ class Joy_Count(Node):
         
         r = (msg.axes[1])*100
 
-        y = twist.twist.linear.x/7.3513268*100
+        y = twist.twist.twist.linear.x/7.3513268*100
 
         e = r-y
 
