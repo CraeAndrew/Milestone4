@@ -15,6 +15,12 @@ def generate_launch_description():
         #]
     )
     ld.add_action(joy)
+    
+    odom = Node(
+        package="odom_data",
+        executable="publisher",
+    )
+    ld.add_action(odom)
 
     motor_controller_node = Node(
         package="motor_driver",
