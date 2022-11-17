@@ -43,8 +43,6 @@ class Joy_Count(Node):
         for i in range(1,3):
                         
             light.data = i
-
-            self.get_logger().info('"%s"' % light.data)
             
             self.publisher.publish(light)
 
@@ -61,6 +59,9 @@ class Joy_Count(Node):
         y = msg.twist.twist.linear.x/7.3513268*100
 
         e = self.r-y
+        
+        if e < 0.0:
+            e = 0.0
         
         kp = 0.5
         ki = 0.3
