@@ -62,9 +62,9 @@ class Joy_Count(Node):
 
         e = self.r-y
 
-        kp = .2
-        ki = .1
-        kd = .1
+        kp = 0
+        ki = 0
+        kd = 0
 
         self.time_now = time.monotonic()
         delta_t = self.time_now - self.time_old
