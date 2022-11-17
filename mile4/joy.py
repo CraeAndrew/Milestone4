@@ -56,16 +56,13 @@ class Joy_Count(Node):
     def listener_callback2(self, msg):
         control=VehCmd()
 
-        y = msg.twist.twist.linear.x/7.3513268*100
+        y = 100.0*msg.twist.twist.linear.x/7.3513268
 
-        e = abs(self.r-y)
-        
-        #if e < 0.0:
-        #    e = 0.0
+        e = self.r-y
         
         kp = 0.5
-        ki = 0.3
-        kd = 0.3
+        ki = 0.2
+        kd = 0.2
 
         self.time_now = time.monotonic()
         delta_t = self.time_now - self.time_old
@@ -73,7 +70,7 @@ class Joy_Count(Node):
 
         self.sum = self.sum + e*delta_t
 
-        u = kp*e + ki*self.sum + kd*(e-self.e_old)/delta_t
+        u = (kp*e) + (ki*self.sum) + (kd*(e-self.e_old)/delta_t)
         
         if u > 100.0:
             u = 100.0
