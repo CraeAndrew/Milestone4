@@ -62,7 +62,7 @@ class Joy_Count(Node):
 
         e = self.r-y
 
-           if e < 0.0:
+        if e < 0.0:
             e = 0.0
         
         kp = 0.5
@@ -76,13 +76,17 @@ class Joy_Count(Node):
         self.sum = self.sum + e*delta_t
 
         u = kp*e + ki*self.sum + kd*(e-self.e_old)/delta_t
-           
+        
+        if u > 100.0:
+            u = 100.0
+            
+        if u < -100.0:
+            u = -100.0
+        
         self.e_old = e
 
         control.throttle_effort = u
         control.steering_angle = self.r2
-    
-        #self.get_logger().info('"%s"' % control)
         
         self.publisher2.publish(control)
 
