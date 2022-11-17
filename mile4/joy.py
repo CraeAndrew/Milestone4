@@ -61,9 +61,6 @@ class Joy_Count(Node):
         y = msg.twist.twist.linear.x/7.3513268*100
 
         e = self.r-y
-
-        if e < 0.0:
-            e = 0.0
         
         kp = 0.5
         ki = 0.3
