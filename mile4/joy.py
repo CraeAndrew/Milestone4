@@ -61,8 +61,8 @@ class Joy_Count(Node):
         e = self.r-y
         
         kp = 0.5
-        ki = 0.2
-        kd = 0.2
+        ki = 0.0
+        kd = 0.0
 
         self.time_now = time.monotonic()
         delta_t = self.time_now - self.time_old
@@ -76,8 +76,8 @@ class Joy_Count(Node):
 
         self.throttle_effort = self.r + u
 
-        if self.throttle_effort < 0:
-            self.throttle_effort = 0
+        if self.throttle_effort < 0.0:
+            self.throttle_effort = 0.0
 
         control.throttle_effort = self.throttle_effort
         control.steering_angle = self.r2
