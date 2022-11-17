@@ -60,10 +60,10 @@ class Joy_Count(Node):
 
         y = msg.twist.twist.linear.x/7.3513268*100
 
-        e = abs(self.r-y)
+        e = self.r-y
 
-        kp = 40
-        ki = 0
+        kp = 25
+        ki = 15
         kd = 0
 
         self.time_now = time.monotonic()
