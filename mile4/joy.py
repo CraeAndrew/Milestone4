@@ -72,11 +72,7 @@ class Joy_Count(Node):
 
         u = (kp*e) + (ki*self.sum) + (kd*(e-self.e_old)/delta_t)
         
-        if u > 100.0:
-            u = 100.0
-            
-        if u < -100.0:
-            u = -100.0
+     
         
         self.e_old = e
 
