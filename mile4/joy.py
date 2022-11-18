@@ -36,6 +36,9 @@ class Joy_Count(Node):
         self.publisher = self.create_publisher(Int16, 'led_color', 10)
         self.publisher2 = self.create_publisher(VehCmd, 'vehicle_command_angle', 10)
         
+        self.publisher3 = self.create_publisher(float32, 'error', 10)
+        self.publisher4 = self.create_publisher(float32, 'command', 10)
+        
     def timer_callback(self):
         
         light = Int16()
@@ -60,6 +63,8 @@ class Joy_Count(Node):
 
         e = self.r-y
         
+        self.publisher3.publish(e)
+        
         kp = 0.1
         ki = 0.0
         kd = 0.01
@@ -83,6 +88,7 @@ class Joy_Count(Node):
         control.steering_angle = self.r2
         
         self.publisher2.publish(control)
+        self.publisher4.publish(self.throttle_effort)
 
 
 def main(args=None):
