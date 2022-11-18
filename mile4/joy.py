@@ -52,8 +52,9 @@ class Joy_Count(Node):
 
     def listener_callback(self, msg):
 
-        if(msg.buttons[0] == 1):
-            self.r = 25.0
+        #if(msg.buttons[0] == 1):
+         #   self.r = 25.0
+        self.r = 25.0
         self.r2 = (msg.axes[0])*45
 
 
@@ -84,14 +85,14 @@ class Joy_Count(Node):
             self.throttle_effort = 0.0
 
         control.throttle_effort = self.throttle_effort
-        control.steering_angle = self.r2
+        #control.steering_angle = self.r2
         
-        self.publisher2.publish(control)
         err = Float32()
         err.data = e
-        self.publisher3.publish(err)
         cmd = Float32()
         cmd.data = self.r
+        self.publisher2.publish(control)
+        self.publisher3.publish(err)
         self.publisher4.publish(cmd)
 
 
