@@ -52,9 +52,8 @@ class Joy_Count(Node):
 
     def listener_callback(self, msg):
 
-        #if(msg.buttons[0] == 1):
-         #   self.r = 25.0
-        self.r = 25.0
+        if(msg.buttons[0] == 1):
+            self.r = 25.0
         self.r2 = (msg.axes[0])*45
 
 
