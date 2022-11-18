@@ -89,9 +89,9 @@ class Joy_Count(Node):
         self.publisher2.publish(control)
         err = Float32()
         err.data = e
+        self.publisher3.publish(err)
         cmd = Float32()
         cmd.data = self.r
-        self.publisher3.publish(err)
         self.publisher4.publish(cmd)
 
 
