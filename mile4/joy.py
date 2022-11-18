@@ -88,9 +88,9 @@ class Joy_Count(Node):
         #control.steering_angle = self.r2
         
         err = Float32()
-        err.data = e
+        err.data = e*7.3513268/100
         cmd = Float32()
-        cmd.data = self.r
+        cmd.data = self.r*7.3513268/100
         self.publisher2.publish(control)
         self.publisher3.publish(err)
         self.publisher4.publish(cmd)
