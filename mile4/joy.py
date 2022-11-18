@@ -65,7 +65,7 @@ class Joy_Count(Node):
 
         e = self.r-y
         
-        kp = 0.01
+        kp = 1
         ki = 0.0
         kd = 0.01
 
