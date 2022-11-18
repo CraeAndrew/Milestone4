@@ -64,8 +64,10 @@ class Joy_Count(Node):
 
         e = self.r-y
         
-        self.publisher3.publish(e)
-        self.publisher4.publish(self.r)
+        err = Float32()
+        err = e
+        cmd = Float32()
+        cmd = self.r
         
         kp = 0.1
         ki = 0.0
@@ -90,6 +92,8 @@ class Joy_Count(Node):
         control.steering_angle = self.r2
         
         self.publisher2.publish(control)
+        self.publisher3.publish(err)
+        self.publisher4.publish(cmd)
 
 
 def main(args=None):
