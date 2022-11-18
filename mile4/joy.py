@@ -38,7 +38,7 @@ class Joy_Count(Node):
         self.publisher2 = self.create_publisher(VehCmd, 'vehicle_command_angle', 10)
         
         self.publisher3 = self.create_publisher(Float32, 'error', 10)
-        #self.publisher4 = self.create_publisher(Float32, 'command', 10)
+        self.publisher4 = self.create_publisher(Float32, 'command', 10)
         
     def timer_callback(self):
         
@@ -63,10 +63,6 @@ class Joy_Count(Node):
         y = 100.0*msg.twist.twist.linear.x/7.3513268
 
         e = self.r-y
-        
-     
-        #cmd = Float32()
-        #cmd.data = self.r
         
         kp = 0.1
         ki = 0.0
@@ -93,8 +89,10 @@ class Joy_Count(Node):
         self.publisher2.publish(control)
         err = Float32()
         err.data = e
+        cmd = Float32()
+        cmd.data = self.r
         self.publisher3.publish(err)
-        #self.publisher4.publish(cmd)
+        self.publisher4.publish(cmd)
 
 
 def main(args=None):
