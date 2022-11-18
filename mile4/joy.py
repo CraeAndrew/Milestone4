@@ -29,6 +29,9 @@ class Joy_Count(Node):
         self.subscription  # prevent unused variable warning
         self.subscription2
 
+        self.r = 0.0
+
+        self.throttle_effort = 0.0
         self.time_old = time.monotonic()
         self.sum = 0
         self.e_old = 0
@@ -52,9 +55,14 @@ class Joy_Count(Node):
 
     def listener_callback(self, msg):
 
-        #if msg.buttons[0] > 0:
-        #    self.r = 25.0
-        self.r = (msg.buttons[0])*7.3513268/4
+        if msg.buttons[0] == 1:    
+            self.get_logger().info(f"A Button Pressed!!")
+            self.r = (msg.buttons[0])*7.3513268/4
+        
+        if msg.buttons[1] == 1:
+            self.get_logger().info(f"B Button Pressed!!")
+            self.r = 0.0
+
         self.r2 = (msg.axes[0])*45
 
 
@@ -65,13 +73,14 @@ class Joy_Count(Node):
 
         e = self.r-y
         
-        kp = 0.4
+        kp = 0.85
         ki = 0.0
-        kd = 0.01
+        kd = 0.0
 
-        self.time_now = time.monotonic()
-        delta_t = self.time_now - self.time_old
-        self.time_old = self.time_now
+        #self.time_now = time.monotonic()
+        #delta_t = self.time_now - self.time_old
+        delta_t = 0.15
+	    #self.time_old = self.time_now
 
         self.sum = self.sum + e*delta_t
 
@@ -79,12 +88,12 @@ class Joy_Count(Node):
         
         self.e_old = e
 
-        self.throttle_effort = self.r + u
+        self.throttle_effort = self.throttle_effort + u
 
         if self.throttle_effort < 0.0:
             self.throttle_effort = 0.0
 
-        control.throttle_effort = self.throttle_effort*100/7.3513268
+        control.throttle_effort = self.throttle_effort
         #control.steering_angle = self.r2
         
         err = Float32()
