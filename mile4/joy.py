@@ -84,7 +84,7 @@ class Joy_Count(Node):
         if self.throttle_effort < 0.0:
             self.throttle_effort = 0.0
 
-        control.throttle_effort = self.throttle_effort
+        control.throttle_effort = self.throttle_effort*100/7.3513268
         #control.steering_angle = self.r2
         
         err = Float32()
