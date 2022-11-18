@@ -4,7 +4,7 @@ from rclpy.node import Node
 from sensor_msgs.msg import Joy
 
 from std_msgs.msg import Int16
-from std_msgs.msg import float32
+from std_msgs.msg import Float32
 
 from drive_interfaces.msg import VehCmd
 
@@ -37,8 +37,8 @@ class Joy_Count(Node):
         self.publisher = self.create_publisher(Int16, 'led_color', 10)
         self.publisher2 = self.create_publisher(VehCmd, 'vehicle_command_angle', 10)
         
-        self.publisher3 = self.create_publisher(float32, 'error', 10)
-        self.publisher4 = self.create_publisher(float32, 'command', 10)
+        self.publisher3 = self.create_publisher(Float32, 'error', 10)
+        self.publisher4 = self.create_publisher(Float32, 'command', 10)
         
     def timer_callback(self):
         
