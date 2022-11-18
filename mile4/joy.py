@@ -65,9 +65,9 @@ class Joy_Count(Node):
         e = self.r-y
         
         err = Float32()
-        err = e
+        err.data = e
         cmd = Float32()
-        cmd = self.r
+        cmd.data = self.r
         
         kp = 0.1
         ki = 0.0
